@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 
-import cleanBuilding from "../../resources/img/cleanBuilding.png";
-import cleanBathroom from "../../resources/img/cleanBathroom.png";
-import cleanCarpets from "../../resources/img/cleanCarperts.png";
-import cleanFurniture from "../../resources/img/cleanFurniture.png";
-import generalClean from "../../resources/img/generalClean.png";
-import washWindows from "../../resources/img/washWindows.png";
 import ModalService from "../modalService/ModalService";
 
 import 'swiper/css/bundle';
+import useServices from '../../services/Service';
 
 
 
-const AppServices = ({ stage }) => {
+const AppServices = ({ stage, orderServices, setOrderServices }) => {
     const [title, setTitle] = useState("Уборка помещений");
+    const [price, setPrice] = useState(0);
+    const [runtime, setRunTime] = useState(0);
 
-    const services = [
-        { src: cleanBuilding, title: "Уборка помещений" },
-        { src: cleanBathroom, title: "Уборка санузлов" },
-        { src: washWindows, title: "Мойка окон" },
-        { src: cleanCarpets, title: "Чистка ковров" },
-        { src: cleanFurniture, title: "Чистка мебели" },
-        { src: generalClean, title: "Генеральная уборка" }
-    ];
 
-    const onClickService = (title) => {
+    const [services, setServices] = useState([]);
+
+    const {_apiBase, getServices} = useServices();
+
+    useEffect(() => {
+        getServices()
+        .then(data => setServices(data))
+    },[])
+
+    const onClickService = (title, price, runtime) => {
         setTitle(title);
+        setPrice(price);
+        setRunTime(runtime);
     };
 
     const renderServices = (arr) => {
-        return arr.map(({ src, title }, i) => (
+        return arr.map(({ photo, name, price, runtime }, i) => (
             <SwiperSlide key={i}>
-                <div className="carousel-item text-center">
+                <div className="carousel-item text-center" >
                     <div className="col-12 position-relative">
-                        <img height={250} width={250} src={src} alt={title} />
+                        <img height={250} width={250} src={`${_apiBase}/${photo}`} alt={name} />
                         {stage !== "main" && (
                             <i
-                                onClick={() => onClickService(title)}
+                                onClick={() => onClickService(name, price, runtime)}
                                 style={{ top: "50%", left: "50%", cursor: "pointer" }}
                                 className="bi fa-4x bi-plus-circle position-absolute translate-middle"
                                 data-bs-toggle="modal"
@@ -47,7 +47,7 @@ const AppServices = ({ stage }) => {
                         )}
                     </div>
                     <div style={{ fontWeight: 400 }} className="mt-3 fs-5 text-wrap word-break">
-                        {title}
+                        {name}
                     </div>
                 </div>
             </SwiperSlide>
@@ -65,6 +65,7 @@ const AppServices = ({ stage }) => {
                 <Swiper
                     style={{"--swiper-navigation-color": "#000"}}
                     modules={[Navigation]}
+                    centeredSlides={true}
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
@@ -87,7 +88,7 @@ const AppServices = ({ stage }) => {
                     {renderServices(services)}
                 </Swiper>
             </div>
-            <ModalService title={title} />
+            <ModalService services={orderServices} setServices={setOrderServices} title={title} price={price} runtime={runtime} />
         </div>
     );
 };

@@ -5,6 +5,7 @@ import AppSectors from "../appSectors/AppSectors";
 import AppServices from "../appServices/AppServices";
 import {MainHeader} from "../appHeader/AppHeader";
 import AppFooter from "../appFooter/AppFooter";
+import AppCheckToken from "../appCheckToken/AppCheckToken";
 
 import verification from "../../resources/icons/verification.svg";
 import banner from "../../resources/img/banner.png";
@@ -13,7 +14,7 @@ import officeImage from "../../resources/img/main-aims.jpg";
 const MainPage = () => {
 
     return (
-        <>
+        <AppCheckToken>
             <MainHeader/>
             <Promo/>
             <Banner/>
@@ -23,7 +24,7 @@ const MainPage = () => {
             <AboutUs/>
             <Location/>
             <AppFooter stage={"main"}/>
-        </>
+        </AppCheckToken>
     )
 }
 

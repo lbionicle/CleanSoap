@@ -1,18 +1,22 @@
+import { useState } from "react";
 import AppFooter from "../appFooter/AppFooter"
 import { MainHeader } from "../appHeader/AppHeader"
 import AppOrder from "../appOrder/AppOrder";
 import AppServices from "../appServices/AppServices";
+import AppCheckToken from "../appCheckToken/AppCheckToken";
 
 const OrderPage = () => {
 
+    const [services, setServices] = useState({})
+
     return (
-        <>
+        <AppCheckToken>
             <MainHeader/>
             <Promo/>
-            <AppServices/>
-            <AppOrder/>
+            <AppServices orderServices={services} setOrderServices={setServices}/>
+            <AppOrder services={services} orderServices={services}/>
             <AppFooter/>
-        </>
+        </AppCheckToken>
     )
 }
 
