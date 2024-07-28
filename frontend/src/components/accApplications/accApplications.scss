@@ -1,0 +1,22 @@
+.user-applications-application{
+
+    & .application-label {
+        font-weight: 600;
+    }
+
+    & i {
+        cursor: pointer;
+    }
+
+    & .applications-application-id {
+        font-weight: 600;
+    }
+
+    &:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    .bi-pencil-fill {
+        cursor: pointer;
+    }
+}

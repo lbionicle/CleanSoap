@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("./carousel.scss");
+@import url("./buttons.scss");
+
+* {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+li,
+dl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    &:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+.bg-origin {
+    background: #F9F3B9;
+    color: black;
+}
+
+.check-mission {
+    padding: 0px 0px 20px 30px;
+    position: relative;
+
+    &:last-child {
+        padding: 0px 0px 0 30px;
+    }
+
+    &::before {
+        content: url("../resources/icons/check.svg");
+        display: inline-block;
+        width: 25px; 
+        height: 25px;
+        top: -2%;
+        left: 0;
+        position: absolute;
+    }
+}
+
+.dot-marker::before {
+    content: '•';
+    color: black;
+    font-size: 2em;
+    margin-right: 0.25em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.main-region {
+    background: url("../resources/img/main-region.png") repeat-x 50% 85%;
+    background-size: cover;
+    width: 100%;
+}

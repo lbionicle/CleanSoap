@@ -1,0 +1,21 @@
+.admin-services-service{
+
+    & .client-label {
+        font-weight: 600;
+    }
+    & i {
+        cursor: pointer;
+    }
+
+    & .services-service-id {
+        font-weight: 600;
+    }
+
+    &:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    .bi-pencil {
+        cursor: pointer;
+    }
+}
